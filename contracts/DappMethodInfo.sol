@@ -6,6 +6,7 @@ contract DappMethodInfo is IDappMethodInfo {
 
     struct MethodInfo {
         address to;
+        bool isPayable;
         uint value;
         string infos;       // inclue name | description | params | params_demo
         bytes data;
@@ -35,14 +36,14 @@ contract DappMethodInfo is IDappMethodInfo {
         return allStoreMethodInfos[storeId].length;
     }
 
-    function getMethodInfoByIndex(uint storeId,uint index) external view  validIndex(storeId,index) returns(address,uint,string memory,bytes memory,bool) {
+    function getMethodInfoByIndex(uint storeId,uint index) external view  validIndex(storeId,index) returns(address,bool,uint,string memory,bytes memory,bool) {
         MethodInfo memory method_infos = allStoreMethodInfos[storeId][index];
-        return (method_infos.to,method_infos.value,method_infos.infos,method_infos.data,method_infos.isHidden);
+        return (method_infos.to,method_infos.isPayable,method_infos.value,method_infos.infos,method_infos.data,method_infos.isHidden);
     }
 
-    function addMethod(uint storeId,address to,uint eth_value,string calldata infos,bytes calldata data) external onlyMethodAdmin {
+    function addMethod(uint storeId,address to,bool isPayable,uint eth_value,string calldata infos,bytes calldata data) external onlyMethodAdmin {
         require(to != address(0),"DappMethodInfo: zero_address");
-        MethodInfo memory method_infos = MethodInfo(to,eth_value,infos,data,false);
+        MethodInfo memory method_infos = MethodInfo(to,isPayable,eth_value,infos,data,false);
         allStoreMethodInfos[storeId].push(method_infos);
     }
 

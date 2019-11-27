@@ -27,8 +27,8 @@ contract DappMethodAdmin is IDappMethodInfo {
         _;
     }
 
-   function addMethod(uint storeId,address to,uint eth_value,string calldata infos,bytes calldata data) external onlyStoreCreator(storeId) {
-        method_info.addMethod(storeId,to,eth_value,infos,data);
+   function addMethod(uint storeId,address to,bool isPayable,uint eth_value,string calldata infos,bytes calldata data) external onlyStoreCreator(storeId) {
+        method_info.addMethod(storeId,to,isPayable,eth_value,infos,data);
         emit AddOneMethodSuc(msg.sender,storeId);
     }
 
