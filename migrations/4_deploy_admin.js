@@ -5,6 +5,6 @@ const DappMethodInfo = artifacts.require("DappMethodInfo");
 const DappHub = artifacts.require("DappHub");
 
 module.exports = function(deployer) {
-  deployer.deploy(DappStoreAdmin,DappHub.address,DappStoreInfo.address);
-  deployer.deploy(DappMethodAdmin,DappMethodInfo.address,DappStoreInfo.address);
+  // deployer.deploy(DappStoreAdmin,DappHub.address,DappStoreInfo.address);
+  // deployer.deploy(DappMethodAdmin,DappMethodInfo.address,DappStoreInfo.address);
 };
